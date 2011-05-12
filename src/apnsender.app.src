@@ -1,0 +1,26 @@
+%% -*- mode: erlang -*-
+
+{application, apnsender, 
+ [{description, "Apple Push Notification sender"},
+  {vsn, git},
+  {applications, [kernel, stdlib]},
+  {registered, [apnsender]},
+  {mod, {apnsender, []}},
+  {env, 
+   [
+    {pools, 
+     [
+      {senderpool, 
+       [	
+		{size, 1},	
+		{max_overflow, 1},
+		{hostname, "gateway.sandbox.push.apple.com"},
+		%{hostname, "localhost"},
+		{port, 2195},
+		%{port, 2295},
+		{cert_file, "certs/apns-sc-devinternal-cert.pem"},
+		{key_file, "certs/apns-sc-devinternal-key-noenc.pem"}
+       ]}
+     ]}
+   ]}
+ ]}.
